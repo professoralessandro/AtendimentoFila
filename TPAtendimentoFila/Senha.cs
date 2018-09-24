@@ -12,6 +12,7 @@ namespace TPAtendimentoFila
         private Int32 id;
         private DateTime dataGerac;
         private DateTime horaGerac;
+        private DateTime dataAtend;
         private DateTime horaAtend;
         #endregion
 
@@ -34,6 +35,11 @@ namespace TPAtendimentoFila
             set { horaGerac = value; }
         }
 
+        public DateTime DataAtend
+        {
+            get { return dataAtend; }
+            set { dataAtend = value; }
+        }
         public DateTime HoraAtend
         {
             get { return horaAtend; }
@@ -42,20 +48,13 @@ namespace TPAtendimentoFila
         #endregion
         
         #region CONSTRUTORES
-        //4 ARGUMENTOS
-
-        public Senha(Int32 id, DateTime horaAtend)
-        {
-            this.id = id;
-            this.horaAtend = System.DateTime.Now;
-        }
         //1 ARGUMENTO
         public Senha(Int32 id)
         {
             this.id = id;
             this.dataGerac = System.DateTime.Now;
             this.horaGerac = System.DateTime.Now;
-            this.horaAtend = System.DateTime.MinValue;
+            
         }
         //0 argumentos
         public Senha()
@@ -63,8 +62,7 @@ namespace TPAtendimentoFila
             this.id = 0;
             this.dataGerac = DateTime.MinValue;
             this.horaGerac = DateTime.MinValue;
-            this.horaAtend = System.DateTime.MinValue;
-        }
+                    }
         #endregion
 
         #region SOBREESCRITAS
@@ -78,12 +76,12 @@ namespace TPAtendimentoFila
         #region METODOSFUNCIONAIS
         public String dadosParciais()
         {
-            return "id: " + this.id + " - data geração: " + this.dataGerac.ToShortDateString() + " - hora geração: " + this.horaGerac.ToShortTimeString();
+            return "id: " + this.id + " - data geração: " + this.dataGerac.ToShortDateString() + " - hora geração: " + this.horaGerac.ToLongTimeString();
         }
         public String dadosCompletos()
         {
-            return "id: " + this.id + " - data geração: " + this.dataGerac.ToShortDateString() +
-                " - hora geração: " + this.horaGerac.ToShortTimeString() + " - hora atendimento: " + this.horaGerac.ToShortTimeString();
+            return  this.dadosParciais() +
+                " - hora geração: " + this.dataAtend.ToShortDateString() + " - hora atendimento: " + this.horaAtend.ToShortTimeString();
         }
         #endregion
     }//class

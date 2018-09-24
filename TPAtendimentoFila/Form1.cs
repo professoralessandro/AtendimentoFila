@@ -57,17 +57,19 @@ namespace TPAtendimentoFila
         private void buttonListarAtendimentos_Click(object sender, EventArgs e)
         {
             listBoxAtendimento.Items.Clear();
-
-            foreach (Senha shn in listSenhas.FilaSenhas)
+            foreach(Senha shn in listSenhas.FilaSenhas)
             {
-                listBoxAtendimento.Items.Add(shn.dadosCompletos());
+                listBoxAtendimento.Items.Add(shn.Id+" - "+shn.DataGerac.ToShortDateString()+ " - " +shn.HoraGerac.ToShortTimeString()
+                    + " - " +shn.DataAtend.ToShortDateString()+ " - " +shn.HoraAtend.ToShortTimeString());
             }
         }
 
         private void buttonChamar_Click(object sender, EventArgs e)
         {
-            listChuiche.chamar(listSenhas.FilaSenhas);
-            
+            if (!listChuiches.ListaGuiches[int.Parse(textBoxGuiche.Text) - 1].chamar(listSenhas.FilaSenhas))
+                MessageBox.Show("Fila vazia");
         }
-    }
-}
+
+     
+    }//CLASS
+}//NAMESPACE

@@ -42,18 +42,18 @@ namespace TPAtendimentoFila
         #endregion
 
         #region METODOSFUNCIONAIS
-        public Boolean chamar(Queue<Senha> FilaSenhas)
+        public Boolean chamar(Queue<Senha> filaSenhas)
         {
-            Boolean chamou = false;
-            Senhas senhas = new Senhas();
-            Senha senha = new Senha();
+            Boolean temSenha = (filaSenhas.Count > 0);
 
-            atendimentos.Enqueue(new Senha(senhas.ProximoAtendimento, System.DateTime.Now));
-
-
-            chamou = true;
-
-            return chamou;
+            if (temSenha)
+            {
+                Senha senhaAtendida = filaSenhas.Dequeue();
+                senhaAtendida.DataAtend = DateTime.Now;
+                senhaAtendida.HoraAtend = DateTime.Now;
+                atendimentos.Enqueue(senhaAtendida);
+            }
+            return temSenha;
         }
         #endregion
     }//CLASS
